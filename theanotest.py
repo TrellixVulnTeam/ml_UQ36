@@ -1,6 +1,11 @@
+# Python Libraries
+import os
+import time
+# 3rd Party Libraries
+# Make sure os has the GPU selected before initializing Theano
+os.environ['THEANO_FLAGS'] = "device=gpu"
 from theano import function, config, shared, tensor
 import numpy
-import time
 
 vlen = 10 * 30 * 768  # 10 x #cores x # threads per core
 iters = 1000
