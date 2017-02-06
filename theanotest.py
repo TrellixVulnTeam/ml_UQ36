@@ -1,9 +1,11 @@
+# Future Libraries
+from __future__ import print_function, division
 # Python Libraries
 import os
 import time
 # 3rd Party Libraries
 # Make sure os has the GPU selected before initializing Theano
-os.environ['THEANO_FLAGS'] = "device=gpu"
+os.environ['THEANO_FLAGS'] = "device=gpu,floatX=float32,,nvcc.flags=-D_FORCE_INLINES"
 from theano import function, config, shared, tensor
 import numpy
 
