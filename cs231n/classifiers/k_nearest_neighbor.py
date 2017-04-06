@@ -71,7 +71,7 @@ class KNearestNeighbor(object):
         # training point, and store the result in dists[i, j]. You should   #
         # not use a loop over dimension.                                    #
         #####################################################################
-        pass
+        dists[i, j] = np.sum(np.power(X[i, :] - self.X_train[j, :], 2))
         #####################################################################
         #                       END OF YOUR CODE                            #
         #####################################################################
@@ -121,6 +121,7 @@ class KNearestNeighbor(object):
     # HINT: Try to formulate the l2 distance using matrix multiplication    #
     #       and two broadcast sums.                                         #
     #########################################################################
+    #dists = np.tile(self.X_train, (X.shape[0], 1)) - X
     pass
     #########################################################################
     #                         END OF YOUR CODE                              #
