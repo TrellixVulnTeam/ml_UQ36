@@ -149,24 +149,26 @@ class KNearestNeighbor(object):
       # the ith test point.
       closest_y = []
       #########################################################################
-      # TODO:                                                                 #
       # Use the distance matrix to find the k nearest neighbors of the ith    #
       # testing point, and use self.y_train to find the labels of these       #
       # neighbors. Store these labels in closest_y.                           #
       # Hint: Look up the function numpy.argsort.                             #
       #########################################################################
-      pass
+      closest_y = self.y_train[np.argsort(dists[i, :])[:k]]
       #########################################################################
-      # TODO:                                                                 #
       # Now that you have found the labels of the k nearest neighbors, you    #
       # need to find the most common label in the list closest_y of labels.   #
       # Store this label in y_pred[i]. Break ties by choosing the smaller     #
       # label.                                                                #
       #########################################################################
-      pass
+      max_count = 0
+      for score in np.unique(closest_y):
+          temp_count = np.sum(closest_y == score)
+          if temp_count > max_count:
+              max_count = temp_count
+              y_pred[i] = score
       #########################################################################
       #                           END OF YOUR CODE                            # 
       #########################################################################
 
     return y_pred
-
