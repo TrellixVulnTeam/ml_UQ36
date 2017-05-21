@@ -89,19 +89,19 @@ class TwoLayerNet(object):
         # Compute the loss
         loss = None
         #############################################################################
-        # TODO: Finish the forward pass, and compute the loss. This should include  #
+        # Finish the forward pass, and compute the loss. This should include  #
         # both the data loss and L2 regularization for W1 and W2. Store the result  #
         # in the variable loss, which should be a scalar. Use the Softmax           #
         # classifier loss.                                                          #
         #############################################################################
         # Data Loss
-        softmax = np.exp(scores - np.max(scores)) # for numeric stability
+        softmax = np.exp(scores - np.max(scores))  # for numeric stability
         softmax /= np.sum(softmax, axis=1, keepdims=True)
         correct_class_loss = 0
-        correct_class_loss -= np.sum(np.log(scores[xrange(N), y]))
+        correct_class_loss -= np.sum(np.log(softmax[xrange(N), y]))
         correct_class_loss /= N
         # L2 Regularization Loss
-        regularization_loss = 0.5*reg*(np.sum(W1**2) + np.sum(W2**2))
+        regularization_loss = reg*(np.sum(W1**2) + np.sum(W2**2))
         loss = correct_class_loss + regularization_loss
         #############################################################################
         #                              END OF YOUR CODE                             #
@@ -110,7 +110,7 @@ class TwoLayerNet(object):
         # Backward pass: compute gradients
         grads = {}
         #############################################################################
-        # TODO: Compute the backward pass, computing the derivatives of the weights #
+        # Compute the backward pass, computing the derivatives of the weights #
         # and biases. Store the results in the grads dictionary. For example,       #
         # grads['W1'] should store the gradient on W1, and be a matrix of same size #
         #############################################################################
